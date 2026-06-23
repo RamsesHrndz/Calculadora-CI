@@ -1,43 +1,30 @@
+from flask import Flask, render_template, request
 from calculator import sumar, restar, multiplicar, dividir
 
-def menu():
-    print("Calculadora")
-    print("1. Sumar")
-    print("2. Restar")
-    print("3. Multiplicar")
-    print("4. Dividir")
-    print("0. Salir")
-    print("____________________________")
+app = Flask(__name__)
 
-def main():
-    while True:
-        menu()
-        option = input("Selecciona una opción: ")
-        if option == "1":
-            numero1 = float(input("Ingresa el primer número: "))
-            numero2 = float(input("Ingresa el segundo número: "))
-            resultado = sumar(numero1, numero2)
-            print("El resultado es: " + str(resultado))
-        elif option == "2":
-            numero1 = float(input("Ingresa el primer número: "))
-            numero2 = float(input("Ingresa el segundo número: "))
-            resultado = restar(numero1, numero2)
-            print("El resultado es: " + str(resultado))
-        elif option == "3":
-            numero1 = float(input("Ingresa el primer número: "))
-            numero2 = float(input("Ingresa el segundo número: "))
-            resultado = multiplicar(numero1, numero2)
-            print("El resultado es: " + str(resultado))
-        elif option == "4":
-            numero1 = float(input("Ingresa el primer número: "))
-            numero2 = float(input("Ingresa el segundo número: "))
-            resultado = dividir(numero1, numero2)
-            print("El resultado es: " + str(resultado))
-        elif option == "0":
-            print("Salir")
-            break
-        else:
-            print("Opción no válida")
+@app.route("/", methods=["GET", "POST"])
+def index():
+    resultado = None
+    error = None
+    if request.method == "POST":
+        try:
+            num1 = float(request.form["num1"])
+            num2 = float(request.form["num2"])
+            op = request.form["operacion"]
+            if op == "sumar":
+                resultado = sumar(num1, num2)
+            elif op == "restar":
+                resultado = restar(num1, num2)
+            elif op == "multiplicar":
+                resultado = multiplicar(num1, num2)
+            elif op == "dividir":
+                resultado = dividir(num1, num2)
+        except ValueError as e:
+            error = str(e)
+        except Exception:
+            error = "Ingresa números válidos"
+    return render_template("index.html", resultado=resultado, error=error)
 
 if __name__ == "__main__":
-    main()
+    app.run(host="0.0.0.0", port=5000)

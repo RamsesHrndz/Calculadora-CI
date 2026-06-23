@@ -1,0 +1,10 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #f0f2f5; }
+.card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,.1); width: 100%; max-width: 400px; }
+h1 { text-align: center; margin-bottom: 1.5rem; color: #1a1a2e; }
+form { display: flex; flex-direction: column; gap: 1rem; }
+input, select, button { padding: .75rem; font-size: 1rem; border: 1px solid #ccc; border-radius: 8px; }
+button { background: #1a1a2e; color: white; border: none; cursor: pointer; font-weight: bold; }
+button:hover { background: #16213e; }
+.resultado { margin-top: 1rem; text-align: center; font-size: 1.5rem; font-weight: bold; color: #0f3460; }
+.error { margin-top: 1rem; text-align: center; color: #e94560; }

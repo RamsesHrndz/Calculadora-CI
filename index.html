@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="card">
+        <h1>Calculadora</h1>
+        <form method="post">
+            <input type="number" step="any" name="num1" placeholder="Primer número" required>
+            <input type="number" step="any" name="num2" placeholder="Segundo número" required>
+            <select name="operacion">
+                <option value="sumar">Sumar</option>
+                <option value="restar">Restar</option>
+                <option value="multiplicar">Multiplicar</option>
+                <option value="dividir">Dividir</option>
+            </select>
+            <button type="submit">Calcular</button>
+        </form>
+        {% if resultado is not none %}
+            <div class="resultado">Resultado: {{ resultado }}</div>
+        {% endif %}
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
