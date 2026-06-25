@@ -1,2 +1,5 @@
 flask>=3.0
 pytest
+pytest-cov
+prometheus-flask-exporter
+gunicorn
