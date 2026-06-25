@@ -33,7 +33,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: railwayapp/cli@v1.0.0
-        with:
-          command: up
-          service-id: ${{ secrets.RAILWAY_SERVICE_ID }}
+      - name: Install Railway CLI
+        run: npm install -g @railway/cli
+      - name: Deploy to Railway
+        run: railway up
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
